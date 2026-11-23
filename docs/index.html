@@ -7,9 +7,11 @@
 <meta name="description" content="Dashboard de custos de importação com dados fictícios. Recriação inspirada em um problema real de importação.">
 <style>
 /* ===== Tokens: única fonte de verdade de cor, tipografia, raio, sombra e espaçamento ===== */
+@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url("assets/fonts/inter-Regular.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:600;font-style:normal;font-display:swap;src:url("assets/fonts/inter-SemiBold.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:swap;src:url("assets/fonts/inter-Bold.woff") format("woff")}
 :root{
-  --font-sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --font-serif:Georgia,"Times New Roman",serif;
+  --font-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --fs-xs:12px;--fs-sm:13px;--fs-md:14px;--fs-lg:16px;--fs-xl:20px;--fs-2xl:28px;--fs-3xl:34px;
   --r-sm:8px;--r-md:12px;--r-lg:16px;--r-pill:999px;
   --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;
@@ -34,7 +36,7 @@ html[data-theme="dark"]{
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font:var(--fs-md)/1.5 var(--font-sans)}
+body{margin:0;background:var(--bg);color:var(--text);font:var(--fs-md)/1.5 var(--font-sans);font-variant-numeric:tabular-nums}
 button,select,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:var(--r-sm)}
@@ -83,7 +85,7 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .content{width:100%;max-width:1360px;margin:0 auto;padding:var(--s5) var(--s5) var(--s6)}
 .page-head{margin-bottom:var(--s4)}
 .crumb{font-size:var(--fs-sm);color:var(--muted);margin:0}
-h1{font-family:var(--font-serif);font-size:var(--fs-3xl);line-height:1.15;margin:var(--s1) 0 var(--s2);font-weight:700;outline:none}
+h1{font-size:var(--fs-3xl);line-height:1.15;letter-spacing:-.02em;margin:var(--s1) 0 var(--s2);font-weight:700;outline:none}
 .lede{margin:0;color:var(--muted);max-width:70ch}
 
 /* ===== Filtros ===== */
@@ -107,10 +109,11 @@ select,.search{height:40px;padding:0 var(--s3);border-radius:var(--r-md);border:
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s4)}
 .s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--s5);min-width:0}
-.card h2{font-family:var(--font-serif);font-size:var(--fs-xl);margin:0 0 var(--s1);line-height:1.25}
+.card h2{font-size:var(--fs-lg);font-weight:600;margin:0 0 var(--s1);line-height:1.25}
 .card .sub{margin:0 0 var(--s4);color:var(--muted);font-size:var(--fs-sm)}
 .kpi .lbl{font-size:var(--fs-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.kpi .val{font-family:var(--font-serif);font-size:var(--fs-2xl);font-weight:700;margin:var(--s2) 0 var(--s1);line-height:1.15;overflow-wrap:anywhere}
+.kpi{container-type:inline-size}
+.kpi .val{font-size:clamp(18px,8.4cqw,28px);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;margin:var(--s2) 0 var(--s1);line-height:1.15}
 .kpi .ctx{font-size:var(--fs-sm);color:var(--muted)}
 .kpi .share{font-size:var(--fs-sm);font-weight:700;color:var(--accent-text);margin-top:var(--s2)}
 details.how{margin-top:var(--s4);border-top:1px solid var(--border);padding-top:var(--s3);font-size:var(--fs-sm);color:var(--muted)}
@@ -206,6 +209,18 @@ tbody tr:hover td{background:var(--surface-2)}
   .cascade .row{grid-template-columns:1fr auto}
   .cascade .tr{grid-column:1 / -1;order:3}
 }
+
+.map-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s3)}
+.map-svg{width:100%;height:auto;display:block}
+.map-svg .land{fill:var(--surface-2);stroke:none}
+.map-svg .ctry{fill:color-mix(in srgb,var(--accent) var(--a,40%),var(--surface-2));stroke:var(--surface);stroke-width:.8;cursor:pointer;transition:fill var(--ease)}
+.map-svg .ctry:hover{fill:color-mix(in srgb,var(--accent) 85%,var(--surface-2))}
+.map-svg .ctry[aria-pressed="true"]{stroke:var(--text);stroke-width:1.6}
+.map-svg .ctry:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+.map-svg .bub{fill:var(--accent);fill-opacity:.82;stroke:var(--surface);stroke-width:1.5;pointer-events:none}
+.map-svg text{font-family:var(--font-sans);fill:var(--text);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.map-svg .t1{font-size:18px;font-weight:700}.map-svg .t2{font-size:15px;font-weight:600;fill:var(--muted)}
+.map-note{font-size:var(--fs-sm);color:var(--muted)}
 </style>
 </head>
 <body>
@@ -247,6 +262,7 @@ tbody tr:hover td{background:var(--surface-2)}
     </main>
   </div>
 </div>
+<script src="assets/mapa-mundi.js"></script>
 <script>
 "use strict";
 /* ================= Configuração ================= */
@@ -421,12 +437,29 @@ function viewVisao(rows){
   ${card("s6","Custo por país","Custo total (R$) e participação no recorte. Clique para filtrar.",bars(gp.map(x=>({label:x.key,key:x.key,v:x.c,text:`${brlC(x.c)} · ${pct(x.c,c)}`})),{key:"pais"}),"Soma de <code>custo_total_brl</code> por país; participação = parte ÷ total do recorte.")}
   ${card("s6","Custo por segmento","Custo total (R$) e participação no recorte. Clique para filtrar.",bars(group(rows,"segmento").sort((a,b)=>b.c-a.c).map(x=>({label:x.key,key:x.key,v:x.c,text:`${brlC(x.c)} · ${pct(x.c,c)}`})),{key:"segmento"}),"Soma de <code>custo_total_brl</code> por segmento.")}
   </div>`}
+function mapa(gp,c){
+  const M=window.MAPA;if(!M)return `<p class="map-note">Mapa indisponível (arquivo assets/mapa-mundi.js não carregou). Veja as barras ao lado.</p>`;
+  const mx=Math.max(1,...gp.map(x=>x.c)),by=new Map(gp.map(x=>[x.key,x]));
+  const off={"EUA":["m",0,1],"Alemanha":["e",-1,0],"China":["m",0,-1],"Índia":["e",-1,1],"Vietnã":["s",1,1]};
+  let paths="",bubs="",txt="";
+  for(const k of Object.keys(M.c)){const x=by.get(k);const has=!!x&&x.c>0;const on=S.f.pais===k;
+    const a=has?Math.round(25+60*x.c/mx):0;
+    const lab=has?`${k}: ${brl(x.c)}, ${pct(x.c,c)} do recorte`:`${k}: sem importações no recorte`;
+    paths+=`<path class="ctry" d="${M.c[k]}" style="--a:${a}%" tabindex="0" role="button" aria-pressed="${on}" aria-label="${esc(lab)}. ${on?"Remover filtro":"Filtrar por este país"}" data-f="pais" data-v="${esc(k)}"><title>${esc(lab)}</title></path>`;
+    if(!has)continue;
+    const [cx,cy]=M.cent[k],r=7+Math.sqrt(x.c/mx)*20,[an,dx,dy]=off[k]||["m",0,1];
+    bubs+=`<circle class="bub" cx="${cx}" cy="${cy}" r="${r.toFixed(1)}"/>`;
+    const tx=an==="m"?cx:cx+dx*(r+5),ty=cy+(dy>0?r+17:dy<0?-(r+22):4);
+    const anc=an==="e"?"end":an==="s"?"start":"middle";
+    txt+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="${anc}"><tspan class="t1">${esc(k)}</tspan><tspan class="t2" x="${tx.toFixed(1)}" dy="17">${brlC(x.c)} · ${pct(x.c,c)}</tspan></text>`}
+  return `<div class="map-wrap"><svg class="map-svg" viewBox="0 0 ${M.vb[0]} ${M.vb[1]}" role="group" aria-label="Mapa-múndi com o custo total por país de origem. Cada país é um botão que aplica o filtro."><path class="land" d="${M.land}"/>${paths}${bubs}${txt}</svg><p class="map-note">Cor e tamanho do círculo proporcionais ao custo total. Países sem importação ficam em cinza. Clique no país para filtrar.</p></div>`}
 function viewOrigem(rows){
   const c=sumC(rows),gp=group(rows,"pais").sort((a,b)=>b.c-a.c);
   const forn=group(rows,"fornecedor").sort((a,b)=>b.c-a.c).slice(0,10);const topSum=forn.slice(0,5).reduce((a,b)=>a+b.c,0);
   const comp=gp.map(x=>{const rest=x.c-x.fob-x.fr-x.se-x.en;return `<div class="stack-row"><span class="bar-label">${esc(x.key)}</span><div>${stackBar([{l:"Mercadoria (FOB)",v:x.fob,t:pct(x.fob,x.c)},{l:"Frete e seguro",v:x.fr+x.se,t:pct(x.fr+x.se,x.c)},{l:"Encargos",v:x.en,t:pct(x.en,x.c)}],x.fob+x.fr+x.se+x.en,["c1","c2","c3"])}<div class="stack-vals">FOB ${pct(x.fob,x.fob+x.fr+x.se+x.en)} · frete e seguro ${pct(x.fr+x.se,x.fob+x.fr+x.se+x.en)} · encargos ${pct(x.en,x.fob+x.fr+x.se+x.en)}</div></div></div>`}).join("");
   return `<div class="grid">
-  ${card("s6","Custo por país","Custo total (R$) e participação. Clique para filtrar.",bars(gp.map(x=>({label:x.key,key:x.key,v:x.c,text:`${brlC(x.c)} · ${pct(x.c,c)}`})),{key:"pais"}),"Soma de <code>custo_total_brl</code> por país.")}
+  ${card("s7","Mapa de custo por país","Custo total (R$) por país de origem no recorte atual. Clique para filtrar.",mapa(gp,c),"Soma de <code>custo_total_brl</code> por país de origem. Geometria simplificada do Natural Earth (domínio público), embutida no repositório; sem chamadas externas.")}
+  ${card("s5","Custo por país","Custo total (R$) e participação. Clique para filtrar.",bars(gp.map(x=>({label:x.key,key:x.key,v:x.c,text:`${brlC(x.c)} · ${pct(x.c,c)}`})),{key:"pais"}),"Soma de <code>custo_total_brl</code> por país.")}
   ${card("s6","Top 10 fornecedores",`Os 5 primeiros somam ${pct(topSum,c)} do custo do recorte.`,bars(forn.map(x=>({label:x.key.replace(" Ltda (fictício)",""),key:x.key,v:x.c,text:`${brlC(x.c)} · ${pct(x.c,c)}`})),{}),"Soma de <code>custo_total_brl</code> por fornecedor (todos fictícios); participação sobre o total do recorte.")}
   ${card("s12","Composição do custo por país","Participação de mercadoria, frete e seguro, e encargos no custo convertido em reais (soma de cada componente × câmbio da linha).",`<div class="legend"><span><i class="c1"></i>Mercadoria (FOB)</span><span><i class="c2"></i>Frete e seguro</span><span><i class="c3"></i>Encargos (II, IPI, PIS/COFINS fictícios)</span></div>${comp}`,"Cada componente em USD × câmbio da linha, somado por país. Há diferença de poucos centavos para o custo total por causa do arredondamento linha a linha; as proporções usam a soma dos três componentes.")}
   </div>`}
@@ -535,7 +568,7 @@ function setTheme(t){S.theme=t;document.documentElement.dataset.theme=t;safe(()=
 
 /* ================= Eventos (delegação) ================= */
 document.addEventListener("click",e=>{
-  const t=e.target.closest("button,a");if(!t)return;
+  const t=e.target.closest("button,a,[role=button]");if(!t)return;
   if(t.id==="collapse"){S.collapsed=!S.collapsed;safe(()=>localStorage.setItem("gs-collapsed",S.collapsed?"1":"0"));shell();return}
   if(t.id==="menu"){$("#app-shell").classList.add("open");return}
   if(t.id==="theme"){setTheme(S.theme==="dark"?"light":"dark");return}
@@ -556,7 +589,7 @@ document.addEventListener("change",e=>{
 });
 document.addEventListener("input",e=>{if(e.target.id==="q"){S.q=e.target.value;S.page=0;render()}});
 $("#scrim").addEventListener("click",()=>$("#app-shell").classList.remove("open"));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#app-shell").classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#app-shell").classList.remove("open");if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches(".ctry")){e.preventDefault();e.target.dispatchEvent(new MouseEvent("click",{bubbles:true}))}});
 let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(S.route==="visao"&&S.rows.length)render()},150)});
 safe(()=>window.addEventListener("hashchange",()=>{const id=location.hash.replace(/^#\/?/,"");if(ROUTES.find(r=>r.id===id)&&id!==S.route){S.route=id;S.page=0;render()}}));
 

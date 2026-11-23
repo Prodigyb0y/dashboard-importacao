@@ -28,3 +28,7 @@ Observações:
 Planilha (fonte primária): [dashboard-importacao-base v2](https://docs.google.com/spreadsheets/d/1G8Uidlj_B9qH8sGUY4FsBWGn6F_U6-7iR92cn-Zc-DY/edit), importada do mesmo CSV. A exportação CSV da planilha, lida de outra origem (CORS ok), tem 1.500 linhas, o mesmo cabeçalho e soma de `custo_total_brl` de R$ 307.292.989,94, igual ao gabarito R01. O sha256 do arquivo exportado difere do CSV do repositório porque o Sheets reformata números (por exemplo, `49144.2` em vez de `49144.20`); o conteúdo numérico é o mesmo. 
 
 Conferência na página publicada (23/11/2026, https://prodigyb0y.github.io/dashboard-importacao/): a fonte exibida foi "Google Sheets" (sem aviso de fallback) e os 14 recortes bateram em custo total e número de importações com o gabarito, lidos da tela com os mesmos filtros. Nessa rodada não foram relidos atraso médio, cobertura e críticos (isso foi feito na conferência local acima).
+
+## Revisão: mapa e fonte (23/11/2026)
+
+Adicionados o mapa por país (tela Origem) e a fonte Inter (subset WOFF local, licença SIL OFL). Nenhum cálculo foi alterado. Conferência refeita após a mudança: 14 de 14 recortes com diferença zero (`docs/conferir_dashboard.py`). Geometria do mapa: Natural Earth 1:110m (domínio público), simplificada e embutida em `docs/assets/mapa-mundi.js`, sem chamadas externas.
