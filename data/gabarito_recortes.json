@@ -1,0 +1,42 @@
+{
+  "R01 total geral": {
+    "qtd": 500,
+    "custo_total_brl": "108917549.62"
+  },
+  "R02 país China": {
+    "qtd": 105,
+    "custo_total_brl": "24634181.75"
+  },
+  "R03 país Índia": {
+    "qtd": 105,
+    "custo_total_brl": "22578655.52"
+  },
+  "R04 material Rolamentos": {
+    "qtd": 95,
+    "custo_total_brl": "21936286.11"
+  },
+  "R05 material Sensores": {
+    "qtd": 96,
+    "custo_total_brl": "21167381.12"
+  },
+  "R06 China + Rolamentos": {
+    "qtd": 16,
+    "custo_total_brl": "3589669.10"
+  },
+  "R07 ano 2025": {
+    "qtd": 277,
+    "custo_total_brl": "59662578.09"
+  },
+  "R08 ano 2026": {
+    "qtd": 223,
+    "custo_total_brl": "49254971.53"
+  },
+  "R09 1º trimestre 2026": {
+    "qtd": 58,
+    "custo_total_brl": "12073660.83"
+  },
+  "R10 Alemanha + Sensores": {
+    "qtd": 21,
+    "custo_total_brl": "4773155.32"
+  }
+}
