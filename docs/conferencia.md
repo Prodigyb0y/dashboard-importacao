@@ -24,3 +24,5 @@ Resultado: 14 de 14 recortes sem diferença (custo, contagem, atraso médio, cob
 Observações:
 - O critério original (10 recortes sobre 500 linhas) foi substituído por 14 recortes sobre 1.500 linhas, por decisão do autor, ao incluir segmento, área, MRP e o ano de 2024.
 - Ainda não conferido: carregamento direto do Google Sheets (a planilha precisa receber o novo CSV) e a página publicada no GitHub Pages.
+
+Planilha (fonte primária): [dashboard-importacao-base v2](https://docs.google.com/spreadsheets/d/1G8Uidlj_B9qH8sGUY4FsBWGn6F_U6-7iR92cn-Zc-DY/edit), importada do mesmo CSV. A exportação CSV da planilha, lida de outra origem (CORS ok), tem 1.500 linhas, o mesmo cabeçalho e soma de `custo_total_brl` de R$ 307.292.989,94, igual ao gabarito R01. O sha256 do arquivo exportado difere do CSV do repositório porque o Sheets reformata números (por exemplo, `49144.2` em vez de `49144.20`); o conteúdo numérico é o mesmo. Ainda não testado a partir de `github.io`.
