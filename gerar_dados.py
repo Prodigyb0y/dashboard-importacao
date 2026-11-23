@@ -43,6 +43,6 @@ for i in range(1, 1501):
         "custo_total_brl": custo, "lead_time_planejado_dias": lead_plan, "atraso_dias": atraso,
         "consumo_mensal": consumo, "estoque_atual": estoque, "cobertura_dias": cobertura,
         "ponto_pedido": ponto_pedido, "status_mrp": status})
-with open("data/importacoes.csv", "w", newline="", encoding="utf-8") as f:
+with open("docs/data/importacoes.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=list(linhas[0].keys())); w.writeheader(); w.writerows(linhas)
 print("linhas:", len(linhas))

@@ -1,8 +1,8 @@
 import json,re,sys,threading,http.server,socketserver,functools
 from playwright.sync_api import sync_playwright
-H=functools.partial(http.server.SimpleHTTPRequestHandler,directory='.');H.log_message=lambda *a:None
-srv=socketserver.TCPServer(('127.0.0.1',8803),H);threading.Thread(target=srv.serve_forever,daemon=True).start()
-gab=json.load(open('data/gabarito_recortes.json'))
+H=functools.partial(http.server.SimpleHTTPRequestHandler,directory='docs');H.log_message=lambda *a:None
+srv=socketserver.TCPServer(('127.0.0.1',8811),H);threading.Thread(target=srv.serve_forever,daemon=True).start()
+gab=json.load(open('docs/data/gabarito_recortes.json'))
 F={"R01 total geral":{},"R02 país China":{'pais':'China'},"R03 país Índia":{'pais':'Índia'},"R04 material Rolamentos":{'material':'Rolamentos'},"R05 material Sensores":{'material':'Sensores'},"R06 China + Rolamentos":{'pais':'China','material':'Rolamentos'},"R07 ano 2024":{'ano':'2024'},"R08 ano 2025":{'ano':'2025'},"R09 ano 2026":{'ano':'2026'},"R10 1º trimestre 2026":{'ano':'2026','tri':'1'},"R11 segmento Automotivo":{'segmento':'Automotivo'},"R12 área Manutenção":{'area':'Manutenção'},"R13 Alemanha + Sensores":{'pais':'Alemanha','material':'Sensores'},"R14 segmento Energia + área Projetos + 2025":{'segmento':'Energia','area':'Projetos','ano':'2025'}}
 def br(v):
     i,f=v.split('.');return f"{int(i):,}".replace(',','.')+','+f
@@ -13,7 +13,7 @@ with sync_playwright() as p:
     pg=b.new_page(viewport={'width':1440,'height':960});errs=[];pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(m.text))
     pg.route('**/docs.google.com/**',lambda r:r.abort())
     for n,f in F.items():
-        pg.goto('http://127.0.0.1:8803/index.html');pg.wait_for_selector('.kpi .val')
+        pg.goto('http://127.0.0.1:8811/index.html');pg.wait_for_selector('.kpi .val')
         for k,v in f.items():
             if k in('ano','tri'): pg.click(f'button[data-seg="{k}"][data-v="{v}"]')
             else: pg.select_option(f'#f-{k}',v)

@@ -1,6 +1,6 @@
 # Conferência dos recortes
 
-Método: dashboard servido localmente (Chrome headless, Playwright) com a cópia congelada `data/importacoes.csv` (sha256 `d3dcbbe5a3baa4469b608eb3973b1a8c4944ae3449d99d111e9928f2cdfe040d`, 1.500 linhas). Para cada recorte, os filtros foram aplicados na tela e os valores dos cartões da Visão geral foram lidos. Valores esperados: `data/gabarito_recortes.json`, gerado por `referencia.py` (script independente, Decimal, sem usar código do dashboard). A fonte Google Sheets foi bloqueada de propósito para fixar a cópia do repositório. Script: `docs/conferir_dashboard.py`.
+Método: dashboard servido localmente (Chrome headless, Playwright) com a cópia congelada `docs/data/importacoes.csv` (sha256 `d3dcbbe5a3baa4469b608eb3973b1a8c4944ae3449d99d111e9928f2cdfe040d`, 1.500 linhas). Para cada recorte, os filtros foram aplicados na tela e os valores dos cartões da Visão geral foram lidos. Valores esperados: `docs/data/gabarito_recortes.json`, gerado por `referencia.py` (script independente, Decimal, sem usar código do dashboard). A fonte Google Sheets foi bloqueada de propósito para fixar a cópia do repositório. Script: `docs/conferir_dashboard.py`.
 
 | Recorte | Linhas esp. | Custo esperado (R$) | Linhas exib. | Custo exibido (R$) | Dif. (R$) | Atraso médio esp./exib. (d) | Cobertura média esp./exib. (d) | Críticos esp./exib. | % atrasados (esp. calc.) | Resultado |
 |---|---|---|---|---|---|---|---|---|---|---|

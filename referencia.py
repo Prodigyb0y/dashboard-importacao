@@ -1,7 +1,7 @@
 """Referência independente (não usa nada do dashboard). Grava data/gabarito_recortes.json."""
 import csv, json
 from decimal import Decimal, ROUND_HALF_UP
-with open("data/importacoes.csv", encoding="utf-8") as f:
+with open("docs/data/importacoes.csv", encoding="utf-8") as f:
     dados = list(csv.DictReader(f))
 Q2, Q1 = Decimal("0.01"), Decimal("0.1")
 def resumo(filtro):
@@ -32,6 +32,6 @@ RECORTES = {
     "R14 segmento Energia + área Projetos + 2025": lambda r: r["segmento"] == "Energia" and r["area"] == "Projetos" and r["data"].startswith("2025"),
 }
 res = {n: resumo(f) for n, f in RECORTES.items()}
-with open("data/gabarito_recortes.json", "w", encoding="utf-8") as f:
+with open("docs/data/gabarito_recortes.json", "w", encoding="utf-8") as f:
     json.dump(res, f, ensure_ascii=False, indent=2)
 for n, v in res.items(): print(n, v)
