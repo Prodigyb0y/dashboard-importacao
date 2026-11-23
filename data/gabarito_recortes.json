@@ -1,42 +1,114 @@
 {
   "R01 total geral": {
-    "qtd": 500,
-    "custo_total_brl": "108917549.62"
+    "qtd": 1500,
+    "custo_total_brl": "307292989.94",
+    "atraso_medio_dias": "4.9",
+    "cobertura_media_dias": "48.4",
+    "pedidos_com_atraso": 969,
+    "status_critico": 518
   },
   "R02 país China": {
-    "qtd": 105,
-    "custo_total_brl": "24634181.75"
+    "qtd": 341,
+    "custo_total_brl": "75041961.00",
+    "atraso_medio_dias": "5.0",
+    "cobertura_media_dias": "48.6",
+    "pedidos_com_atraso": 219,
+    "status_critico": 145
   },
   "R03 país Índia": {
-    "qtd": 105,
-    "custo_total_brl": "22578655.52"
+    "qtd": 295,
+    "custo_total_brl": "62345085.62",
+    "atraso_medio_dias": "4.7",
+    "cobertura_media_dias": "49.3",
+    "pedidos_com_atraso": 185,
+    "status_critico": 110
   },
   "R04 material Rolamentos": {
-    "qtd": 95,
-    "custo_total_brl": "21936286.11"
+    "qtd": 302,
+    "custo_total_brl": "60621633.28",
+    "atraso_medio_dias": "4.9",
+    "cobertura_media_dias": "49.0",
+    "pedidos_com_atraso": 196,
+    "status_critico": 102
   },
   "R05 material Sensores": {
-    "qtd": 96,
-    "custo_total_brl": "21167381.12"
+    "qtd": 277,
+    "custo_total_brl": "58152488.94",
+    "atraso_medio_dias": "4.9",
+    "cobertura_media_dias": "50.1",
+    "pedidos_com_atraso": 187,
+    "status_critico": 87
   },
   "R06 China + Rolamentos": {
-    "qtd": 16,
-    "custo_total_brl": "3589669.10"
+    "qtd": 59,
+    "custo_total_brl": "12457987.75",
+    "atraso_medio_dias": "5.0",
+    "cobertura_media_dias": "47.8",
+    "pedidos_com_atraso": 38,
+    "status_critico": 27
   },
-  "R07 ano 2025": {
-    "qtd": 277,
-    "custo_total_brl": "59662578.09"
+  "R07 ano 2024": {
+    "qtd": 543,
+    "custo_total_brl": "106187412.70",
+    "atraso_medio_dias": "4.7",
+    "cobertura_media_dias": "48.8",
+    "pedidos_com_atraso": 362,
+    "status_critico": 182
   },
-  "R08 ano 2026": {
-    "qtd": 223,
-    "custo_total_brl": "49254971.53"
+  "R08 ano 2025": {
+    "qtd": 529,
+    "custo_total_brl": "108412591.91",
+    "atraso_medio_dias": "5.1",
+    "cobertura_media_dias": "48.7",
+    "pedidos_com_atraso": 330,
+    "status_critico": 182
   },
-  "R09 1º trimestre 2026": {
-    "qtd": 58,
-    "custo_total_brl": "12073660.83"
+  "R09 ano 2026": {
+    "qtd": 428,
+    "custo_total_brl": "92692985.33",
+    "atraso_medio_dias": "4.8",
+    "cobertura_media_dias": "47.5",
+    "pedidos_com_atraso": 277,
+    "status_critico": 154
   },
-  "R10 Alemanha + Sensores": {
-    "qtd": 21,
-    "custo_total_brl": "4773155.32"
+  "R10 1º trimestre 2026": {
+    "qtd": 153,
+    "custo_total_brl": "32070703.75",
+    "atraso_medio_dias": "5.2",
+    "cobertura_media_dias": "47.4",
+    "pedidos_com_atraso": 105,
+    "status_critico": 51
+  },
+  "R11 segmento Automotivo": {
+    "qtd": 279,
+    "custo_total_brl": "57224417.50",
+    "atraso_medio_dias": "5.0",
+    "cobertura_media_dias": "47.0",
+    "pedidos_com_atraso": 190,
+    "status_critico": 107
+  },
+  "R12 área Manutenção": {
+    "qtd": 324,
+    "custo_total_brl": "65489355.33",
+    "atraso_medio_dias": "4.9",
+    "cobertura_media_dias": "48.7",
+    "pedidos_com_atraso": 213,
+    "status_critico": 108
+  },
+  "R13 Alemanha + Sensores": {
+    "qtd": 57,
+    "custo_total_brl": "11262627.44",
+    "atraso_medio_dias": "5.4",
+    "cobertura_media_dias": "51.7",
+    "pedidos_com_atraso": 42,
+    "status_critico": 12
+  },
+  "R14 segmento Energia + área Projetos + 2025": {
+    "qtd": 22,
+    "custo_total_brl": "4268018.60",
+    "atraso_medio_dias": "4.7",
+    "cobertura_media_dias": "56.2",
+    "pedidos_com_atraso": 15,
+    "status_critico": 5
   }
 }
